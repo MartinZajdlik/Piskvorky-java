@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -27,7 +28,15 @@ public class Main {
             char currentPlayer = players[currentPlayerindex];
             showField(field);
             System.out.println("Player " + currentPlayer + " choose position (1-9)");
-            int position = scanner.nextInt();
+            int position = 0;
+
+            try {
+                position = scanner.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input! Please enter a number between 1 and 9.");
+                scanner.next();
+                continue;
+            }
 
             if (position < 1 || position > 9) {
                 System.out.println("WRONG position! Choose number 1 between 9!");
